@@ -1,39 +1,35 @@
 'use strict';
 
 const express = require('express');
+const crypto = require('crypto');
+const connection = require('./database/connection');
 
 const routes = express.Router();
 
-// Rota Raiz
-routes.get('/', (resquest, response) => {
-  return response.json({
-    evento: "Semana OmniStack 11.0",
-    data: new Date()
-  });
+routes.get('/ongs', async (request, response) => {
+  const ongs = await connection('ongs').select('*');
+
+  return response.json(ongs);
+
 });
 
-// Routes Params
-routes.get('/users/:id', (request, response) => {
-  const params = request.params;
 
-  console.log(params);
+routes.post('/ongs', async (request, response) => {
+  const { name, email, whatsapp, city, uf } = request.body;
 
-  return  response.json({
-    evento: "Semana OmniStack 11.0",
-    data: new Date()
-  });
-});
+  const id = crypto.randomBytes(4).toString('HEX');
 
-// Routes Body
-routes.post('/users', (request, response) => {
-  const body = request.body;
-
-  console.log(body);
-
-  return  response.json({
-    evento: "Semana OmniStack 11.0",
-    data: new Date()
-  });
-});
+  await connection('ongs').insert({
+    id,
+    name,
+    email,
+    whatsapp,
+    city,
+    uf
+  })
+  
+  
+  return response.json({ id });
+})
 
 module.exports = routes;
