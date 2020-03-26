@@ -51,3 +51,22 @@ form input {
 .button:hover {
   filter: brightness(90%);
 }
+
+.logon-container section.form form a{
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+  font-size: 18px;
+  color: #41414d;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.logon-container section.form form a svg {
+  margin-right: 8px;
+}
+
+.logon-container section.form form a:hover {
+  opacity: 0.8;
+}
