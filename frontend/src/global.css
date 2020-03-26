@@ -52,7 +52,7 @@ form input {
   filter: brightness(90%);
 }
 
-.logon-container section.form form a{
+.back-link{
   display: flex;
   align-items: center;
   margin-top: 40px;
@@ -63,10 +63,10 @@ form input {
   transition: opacity 0.2s;
 }
 
-.logon-container section.form form a svg {
+.back-link svg {
   margin-right: 8px;
 }
 
-.logon-container section.form form a:hover {
+.back-link:hover {
   opacity: 0.8;
 }
